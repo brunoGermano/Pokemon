@@ -1,6 +1,6 @@
 # 📚 Pokémon Explorer 🚀
 
-Bem-vindo ao Pokémon Explorer! Este é um projeto React simples e dinâmico que permite a você navegar por uma lista de Pokémons, carregar mais criaturas e até mesmo buscar por suas favoritas. Tudo isso enquanto consulta a API pública do Pokémon!
+Bem-vindo ao Pokémon Explorer! Este é um projeto React simples e dinâmico mas que envolve vários conceitos importantes de programação forntend. Ele permite a você navegar por uma lista de Pokémons, carregar mais criaturas e até mesmo buscar por suas favoritas. Tudo isso enquanto consulta a API pública do Pokémon!
 
 ## ✨ Funcionalidades Incríveis
 Lista Infinita de Pokémons: 📈 Carregue 10 Pokémons por vez com um clique de botão, adicionando-os à sua lista atual.
