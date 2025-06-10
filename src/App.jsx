@@ -13,18 +13,19 @@ import { ThemeTogglerButton } from './components/ThemeTogglerButton';
 function App() {
   
   return (
-  <Div>
+  <Div className='brunoGG'>
   
   {  /* O elemento "<ThemeProvider>" é responsável por gerar o contexto onde seus filhos terão acesso a suas "props" sem que tenha que passar de filho para filho, usando o contexto gerado e evitando o problema do props drilling. */}
-  <ThemeProvider>
-    <ThemeTogglerButton/>
-        {/* // BrowserRouter habilita o roteamento do lado do cliente */}
-        <Router>
+    <ThemeProvider>
+      <ThemeTogglerButton/>
+          {/* // BrowserRouter habilita o roteamento do lado do cliente */}
+          <Router>
               {/* Aplica estilos globais */}
               <GlobalStyle />
               {/* alterado devido a perda da lista de pokemons ao voltar neste componente */}
               {/* Envolve as rotas com o PokemonProvider para que o estado seja compartilhado */}
-              <PokemonProvider>
+              <PokemonProvider >
+
                 {/* Routes define os caminhos para diferentes componentes */}
                 <Routes>
                   {/* Rota para a página inicial (lista de Pokémons) */}
@@ -32,10 +33,12 @@ function App() {
                   {/* Rota para a página de detalhes do Pokémon, com um parâmetro dinâmico 'name' */}
                   <Route path="/pokemon/:name" element={<PokemonDetail />} />
                 </Routes>
+
               </PokemonProvider>
+
         </Router>
       </ThemeProvider>  
-     </Div>
+    </Div>
   );
 }
 
