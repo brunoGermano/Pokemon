@@ -49,12 +49,22 @@ export const Search = () => {
   const { pokemons, setFilteredPokemon, clearSearch } = usePokemonContext();
   const { currentTheme } = useContext(ThemeContext); // Para aplicar o tema ao input e botão
 
+
   const handleSearch = () => {
     // Converte o termo de busca para minúsculas para comparação case-insensitive
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    
     // Procura o Pokémon na lista atual
-    const foundPokemon = pokemons.find(pokemon => pokemon.name.toLowerCase() === lowerCaseSearchTerm);
+    
+    // const foundPokemon = pokemons.find(pokemon => pokemon.name.toLowerCase() === lowerCaseSearchTerm);
+    const foundPokemon = pokemons.find((pokemon) => {
+        if (pokemon.name.toLowerCase() === lowerCaseSearchTerm){
+            return(true)
+            //return(pokemon.name.toLowerCase() === lowerCaseSearchTerm)
+        }
+    }) 
 
+    
     if (foundPokemon) {
       // Se encontrado, define o Pokémon encontrado como o único a ser exibido
       setFilteredPokemon(foundPokemon);

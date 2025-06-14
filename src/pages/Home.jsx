@@ -117,6 +117,8 @@ const Home = () => {
   // Consome o estado e as funções do PokemonContext, incluindo filteredPokemon
   const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon } = usePokemonContext();
 
+
+
   // === Antes da Montagem (Before Mounting) ===
   useLayoutEffect(()=> {
     console.log("0. useLayoutEffect (Antes da Montagem) Equivale ao ComponentWillMount dos componentes de CLASSE")
@@ -143,6 +145,8 @@ const Home = () => {
   });
 
 
+
+
   // CRIAÇÃO DA SEÇÃO DO RETURN
   return (
     <ListContainer style={{color: currentTheme.color, backgroundColor: currentTheme.background}}>
@@ -150,7 +154,7 @@ const Home = () => {
       <Search/> {/* Adiciona o componente de busca */}
       <h1>Lista de Pokemons({pokemons.length}):</h1>
       {/* alterado devido a perda da lista de pokemons ao voltar neste componente */}
-      {/* Renderiza o Pokémon filtrado se houver, caso contrário, renderiza a lista completa */}
+      {/* Renderiza o Pokémon filtrado se houver, caso contrário, renderiza a lista completa, // condition ? true : false */}
       {filteredPokemon ? (
         <PokemonGrid>
           <PokemonCard key={filteredPokemon.id} pokemon={filteredPokemon} />
