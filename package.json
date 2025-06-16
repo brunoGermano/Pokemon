@@ -2,6 +2,8 @@
   "name": "pokemonproject",
   "private": true,
   "version": "0.0.0",
+  // configurando o "./" para indicar a raiz do projeto e funcionar no github pages, assim, ele diferencia raiz de projeto, onde estão todos os meus "assets", de raiz das páginas
+  "homepage": "./",
   "type": "module",
   "scripts": {
     "dev": "vite",
