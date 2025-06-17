@@ -9,6 +9,7 @@ import { PokemonProvider } from './contexts/PokemonContext'; // Importa o Proved
 import styled from "styled-components";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ThemeTogglerButton } from './components/ThemeTogglerButton';
+import { pokemonDetailPagePath, pokemonsMainPagePath } from './globalVariables';
 
 function App() {
   
@@ -29,9 +30,17 @@ function App() {
                 {/* Routes define os caminhos para diferentes componentes */}
                 <Routes>
                   {/* Rota para a página inicial (lista de Pokémons) */}
-                  <Route path="/" element={<Home />} />
+                  
+                  {/* <Route path="/Pokemons" element={<Home />} /> */}
+                  <Route path= {pokemonsMainPagePath} element={<Home />} />
+
+
+                  
                   {/* Rota para a página de detalhes do Pokémon, com um parâmetro dinâmico 'name' */}
-                  <Route path="/pokemon/:name" element={<PokemonDetail />} />
+
+                  {/* <Route path="/pokemonDetail/:name" element={<PokemonDetail />} /> */}
+                  <Route path={`/${pokemonDetailPagePath}/:name`} element={<PokemonDetail />} />
+
                 </Routes>
 
               </PokemonProvider>

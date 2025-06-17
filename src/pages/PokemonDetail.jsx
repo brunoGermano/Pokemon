@@ -16,6 +16,8 @@ import {
 } from '../styles/DetailStyles';
 import { Listing } from '../styles/DetailStyles';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { pokemonsMainPagePath } from '../globalVariables';
+
 
 const PokemonDetail = () => {
   // Obtém o nome do Pokémon dos parâmetros da URL
@@ -95,7 +97,15 @@ const PokemonDetail = () => {
       </Listing>
 
       {/* Botão para voltar para a página inicial */}
-      <HomeButton onClick={() => navigate('/')}>Voltar para a Lista</HomeButton>
+      
+      {/* <HomeButton onClick={() => navigate('/Pokemons')}>Voltar para a Lista</HomeButton> */}
+      {console.log(pokemonsMainPagePath)}
+      <HomeButton onClick={() => navigate(`/${pokemonsMainPagePath}`)}>Voltar para a Lista</HomeButton>
+
+      {/* Este aqui gera um erro na construção do caminho da url por parte do react-dom, ele cria o caminho "http://localhost:5173/pokemonDetail/caterpie/Pokemons", isso acontece porque ele apenas incrementa o valor da variável, "Pokemons", no link que já estava na barra que era "http://localhost:5173/pokemonDetail/caterpie/", em vez de substituir tudo que estava na barra por "/Pokemons", que é o definido como caminho do meu diretório principal, ou seja, o meu "home". Portanto, isso faria o navegador voltar para o diretório principal e mostrar a lista de pokemons novamente, lista essa que é mostrada pelo componente <Home/>. */}
+
+      {/* <HomeButton onClick={() => navigate(pokemonsMainPagePath)}>Voltar para a Lista</HomeButton> */}
+
     </DetailContainer>
   );
 };

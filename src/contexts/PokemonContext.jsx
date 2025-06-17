@@ -31,8 +31,7 @@ export const PokemonProvider = ({ children }) => {
   const fetchPokemons = useCallback(async (currentOffset) => {
     setLoading(true);
     try {
-      // const response = await api.get(`/pokemon?limit=10&offset=${currentOffset}`);
-      const response = await api.get(`/pokemon?limit=10&offset=0`);
+      const response = await api.get(`/pokemon?limit=10&offset=${currentOffset}`);
       const newPokemons = response.data.results;
 
       // Mapeia os resultados para adicionar o ID numérico e manter as outras propriedades

@@ -2,6 +2,7 @@
 import React from 'react';
 import { PokemonCardWrapper } from '../styles/ListStyles';
 import { useNavigate } from 'react-router-dom';
+import { pokemonDetailPagePath } from '../globalVariables';
 
 // Componente para exibir um único Pokémon na lista
 const PokemonCard = ({ pokemon }) => {
@@ -10,7 +11,9 @@ const PokemonCard = ({ pokemon }) => {
   // Função para lidar com o clique em um cartão de Pokémon
   const handleClick = () => {
     // Navega para a página de detalhes, passando o nome do Pokémon como parâmetro
-    navigate(`/pokemon/${pokemon.name}`);
+
+    // navigate(`/pokemonDetail/${pokemon.name}`);
+    navigate(`/${pokemonDetailPagePath}/${pokemon.name}`);
   };
 
   return (

@@ -19,6 +19,8 @@ const Home = () => {
   const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon } = usePokemonContext();
 
 
+/*
+
 
   // === Antes da Montagem (Before Mounting) ===
   useLayoutEffect(()=> {
@@ -45,6 +47,9 @@ const Home = () => {
     // Este efeito roda a cada renderização, a menos que você especifique dependências.
   });
 
+
+
+  */
 
 
 
