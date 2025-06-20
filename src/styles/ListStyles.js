@@ -19,6 +19,23 @@ export const LoadMoreButton = styled.button`
   margin-top: 30px;
   padding: 12px 25px;
   font-size: 18px;
+  `;
+  export const Button = styled.button`
+  margin-top: 30px;
+  margin-left: 30px;
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #218838;
+  }
+
 `;
 
 export const PokemonCardWrapper = styled.div`

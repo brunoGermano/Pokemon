@@ -1,27 +1,25 @@
 
 // src/pages/Home.jsx
-import React, {useContext, useEffect, useLayoutEffect} from 'react';
+import React, { useContext, useEffect } from 'react'; // Removido useLayoutEffect
 import PokemonCard from '../components/PokemonCard';
 import {
   ListContainer,
   PokemonGrid,
   LoadMoreButton,
+  Button
 } from '../styles/ListStyles';
-import { usePokemonContext } from '../contexts/PokemonContext'; // Importa o hook do contexto
-import { Search } from '../components/Search'; // Importa o novo componente Search
-import { ThemeTogglerButton } from "../components/ThemeTogglerButton" // Assumindo que você tem este componente
-import { ThemeContext } from '../contexts/ThemeContext'; // Assumindo que você tem este contexto
+import { usePokemonContext } from '../contexts/PokemonContext';
+import { Search } from '../components/Search';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Home = () => {
   const { currentTheme } = useContext(ThemeContext);
-  // alterado devido a perda da lista de pokemons ao voltar neste componente
-  // Consome o estado e as funções do PokemonContext, incluindo filteredPokemon
-  const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon } = usePokemonContext();
+  const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon, initialSearch } = usePokemonContext();
+
 
 
 /*
-
-
+  //  CRIAÇÃO DOS useEffects para ver os ciclos de vida do componente "Home"
   // === Antes da Montagem (Before Mounting) ===
   useLayoutEffect(()=> {
     console.log("0. useLayoutEffect (Antes da Montagem) Equivale ao ComponentWillMount dos componentes de CLASSE")
@@ -49,18 +47,60 @@ const Home = () => {
 
 
 
-  */
 
 
 
-  // CRIAÇÃO DA SEÇÃO DO RETURN
+
+
+  useEffect(() => {
+    return () => {
+      console.log(`2. useEffect (Atualização): qtde de pokemons da lista: ${pokemons.length}`);
+      localStorage.setItem("limitPokemons", JSON.stringify(pokemons.length))
+    }
+  },[pokemons]); 
+
+  useLayoutEffect(()=> {
+    const limitPokemons = JSON.parse(localStorage.getItem("limitPokemons"));
+    console.log(`0. useLayoutEffect (Antes da Montagem): qtde de pokemons da lista: ${limitPokemons+10}`);
+  }, [])
+  
+*/
+
+
+  // CORREÇÃO: Efeito para salvar o tamanho da lista ao sair/recarregar a página
+  useEffect(() => {
+    // Função que será chamada quando o usuário tentar recarregar ou fechar a página
+    const handleBeforeUnload = () => {
+      // Apenas salva se a lista tiver pokémons, para não salvar "0"
+      if (pokemons.length > 0) {
+        console.log(`Saindo da página. Salvando a quantidade de pokémons: ${pokemons.length}`);
+        localStorage.setItem('pokemonListLength', JSON.stringify(pokemons.length));
+      }
+    };
+
+    // Adiciona o listener ao evento 'beforeunload' do navegador
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // A função de cleanup do useEffect é executada quando o componente é desmontado
+    // (por exemplo, ao navegar para outra rota na sua aplicação)
+    return () => {
+      console.log('Componente Home desmontado. Removendo listener.');
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      
+      // Também salvamos aqui para garantir que a navegação interna (SPA) funcione
+      handleBeforeUnload();
+    };
+    
+  // A dependência [pokemons] garante que a função `handleBeforeUnload`
+  // dentro do listener sempre tenha acesso ao valor mais recente de `pokemons.length`.
+  }, [pokemons]);
+
+
+  // CRIAÇÃO DA SEÇÃO DO RETURN (NENHUMA MUDANÇA AQUI)
   return (
     <ListContainer style={{color: currentTheme.color, backgroundColor: currentTheme.background}}>
-      {/* <ThemeTogglerButton/> */} {/* Mantido se você tiver */}
-      <Search/> {/* Adiciona o componente de busca */}
+      <Search/>
       <h1>Lista de Pokemons({pokemons.length}):</h1>
-      {/* alterado devido a perda da lista de pokemons ao voltar neste componente */}
-      {/* Renderiza o Pokémon filtrado se houver, caso contrário, renderiza a lista completa, // condition ? true : false */}
       {filteredPokemon ? (
         <PokemonGrid>
           <PokemonCard key={filteredPokemon.id} pokemon={filteredPokemon} />
@@ -73,16 +113,13 @@ const Home = () => {
             ))}
           </PokemonGrid>
 
-          {/* Feedback de carregamento enquanto a lista inicial está sendo buscada e está vazia */}
           {loading && pokemons.length === 0 && <p>Carregando Pokemons...</p>}
 
-          {/* Botão "Carregar Mais", desabilitado se estiver carregando ou não houver mais Pokémons */}
-          {hasMore && !loading && pokemons.length > 0 && ( // Mostra apenas se houver mais, não estiver carregando e já tiver pokemons
+          {hasMore && !loading && pokemons.length > 0 && (
             <LoadMoreButton onClick={handleLoadMore} disabled={loading}>
               Carregar Mais (10)
             </LoadMoreButton>
           )}
-          {/* Mostra o botão "Carregando..." apenas durante o "Carregar Mais" */}
           {hasMore && loading && pokemons.length > 0 && (
               <LoadMoreButton disabled={true}>
                 Carregando...
@@ -90,6 +127,9 @@ const Home = () => {
           )}
 
           {!hasMore && pokemons.length > 0 && <p>Não há mais Pokémons para carregar!</p>}
+
+          <Button onClick={initialSearch}>Carregar Do Início</Button>
+
         </>
       )}
     </ListContainer>
