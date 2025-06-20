@@ -1,6 +1,3 @@
-<!--
-comentário 
--->
 
 # 📚 Pokémon Explorer 🚀
 Bem-vindo ao Pokémon Explorer! Esta aplicação React tem como propósito fornecer uma interface interativa e eficiente para consultar dados de Pokémons através da API pública.
@@ -45,6 +42,8 @@ Durante o planejamento e execução deste desafio, algumas decisões chave foram
 
 4. Tipagem Implícita e JavaScript Puro para Estilos/API: Embora o uso de .jsx para componentes seja priorizado para clareza visual de JSX, arquivos como api.js e os de estilo (.js) foram mantidos com a extensão .js por não conterem sintaxe JSX diretamente. Esta é uma convenção comum que distingue arquivos de lógica pura ou de configuração de arquivos de componentes de UI.
 
+5. Usada a biblioteca Lucide React: Escolhida por sua praticidade na criação de ícones visuais no projeto. 
+
 ## 🚀 Como Rodar o Projeto
 Para colocar o Pokémon Explorer em funcionamento na sua máquina local, siga estes passos:
 
@@ -59,8 +58,10 @@ npm install
 ## ou
 yarn install
 
-Inicie a Aplicação:
+### Inicie a Aplicação:
 
+npm run dev
+## ou
 npm start
 ## ou
 yarn start
