@@ -6,7 +6,7 @@ import {
   ListContainer,
   PokemonGrid,
   LoadMoreButton,
-  Button
+  ButtonStyled
 } from '../styles/ListStyles';
 import { usePokemonContext } from '../contexts/PokemonContext';
 import { Search } from '../components/Search';
@@ -14,8 +14,7 @@ import { ThemeContext } from '../contexts/ThemeContext';
 
 const Home = () => {
   const { currentTheme } = useContext(ThemeContext);
-  const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon, initialSearch } = usePokemonContext();
-
+  const { pokemons, loading, hasMore, handleLoadMore, filteredPokemon, initialSearch, DEFAULT_INITIAL_LIMIT } = usePokemonContext();
 
 
 /*
@@ -117,7 +116,8 @@ const Home = () => {
 
           {hasMore && !loading && pokemons.length > 0 && (
             <LoadMoreButton onClick={handleLoadMore} disabled={loading}>
-              Carregar Mais (10)
+              {/* Carregar Mais (10) */}
+              Carregar Mais ({DEFAULT_INITIAL_LIMIT})
             </LoadMoreButton>
           )}
           {hasMore && loading && pokemons.length > 0 && (
@@ -128,7 +128,7 @@ const Home = () => {
 
           {!hasMore && pokemons.length > 0 && <p>Não há mais Pokémons para carregar!</p>}
 
-          <Button onClick={initialSearch}>Carregar Do Início</Button>
+          <ButtonStyled onClick={initialSearch}>Carregar Do Início</ButtonStyled>
 
         </>
       )}

@@ -208,9 +208,9 @@ export const PokemonProvider = ({ children }) => {
   const handleLoadMore = () => {
     if (!loading && hasMore) {
       // Chama a busca com o offset atual
-      fetchPokemons(10, offset);
+      fetchPokemons(DEFAULT_INITIAL_LIMIT, offset); //limit= 20 oofsset=0
       // Prepara o offset para a PRÓXIMA busca
-      setOffset(prevOffset => prevOffset + 10);
+      setOffset(prevOffset => prevOffset + DEFAULT_INITIAL_LIMIT); //limit= 20 oofsset=0 + 10 =10
     }
   };
   
@@ -220,6 +220,10 @@ export const PokemonProvider = ({ children }) => {
   
   const initialSearch = useCallback(() => {
     fetchPokemons(DEFAULT_INITIAL_LIMIT, 0);// limit=DEFAULT_INITIAL_LIMIT e offset=0, buscando os pokemons começando do início da lista provida pela API
+    
+    // preciso setar o offset para a próxima busca a partir do offset de 0 = DEFAULT_INITIAL_LIMIT
+    setOffset( DEFAULT_INITIAL_LIMIT + 0 ); 
+
   }, []);
 
   const contextValue = {
@@ -231,6 +235,7 @@ export const PokemonProvider = ({ children }) => {
     setFilteredPokemon,
     clearSearch,
     initialSearch,
+    DEFAULT_INITIAL_LIMIT
   };
 
   return (
