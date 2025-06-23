@@ -1,2 +1,2 @@
-export const pokemonsMainPagePath = "Poke";
+export const pokemonsMainPagePath = "";
 export const pokemonDetailPagePath = "pokemonDetail"
