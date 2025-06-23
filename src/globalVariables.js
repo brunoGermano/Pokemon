@@ -1,2 +1,2 @@
-export const pokemonsMainPagePath = "Pokemons";
+export const pokemonsMainPagePath = "Pokemon";
 export const pokemonDetailPagePath = "pokemonDetail"

@@ -32,7 +32,7 @@ function App() {
                   {/* Rota para a página inicial (lista de Pokémons) */}
                   
                   {/* <Route path="/Pokemons" element={<Home />} /> */}
-                  <Route path= {pokemonsMainPagePath} element={<Home />} />
+                  <Route path= {`/${pokemonsMainPagePath}`} element={<Home />} />
 
 
                   
